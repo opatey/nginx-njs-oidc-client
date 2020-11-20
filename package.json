@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/OwenPatey/nginx-njs-oidc-client/issues"
   },
-  "homepage": "https://github.com/OwenPatey/nginx-njs-oidc-client#readme"
+  "homepage": "https://github.com/OwenPatey/nginx-njs-oidc-client#readme",
+  "devDependencies": {
+    "njs-types": "^0.4.4"
+  }
 }
