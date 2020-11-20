@@ -1,9 +1,13 @@
 /// <reference path="../node_modules/njs-types/ngx_http_js_module.d.ts" />
 
-function handler(r: NginxHTTPRequest) {
-  r.headersOut['content-type'] = 'text/plain';
-  r.return(200, "Hello from TypeScript");
+function initiate(request: NginxHTTPRequest) {
+  request.headersOut['Location'] = 'https://bbc.co.uk';
+  request.return(302);
 }
 
-export default { handler }
+function auth_handler(request: NginxHTTPRequest) {
+  request.return(401);
+}
+
+export default { initiate, auth_handler }
 
