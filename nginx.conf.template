@@ -3,22 +3,31 @@ load_module modules/ngx_http_js_module.so;
 events {}
 
 http {
-    js_import njs-modules/oidc_client.js;
+
+    js_import out/oidc_client.js;
 
     server {
         listen 80;
         
         location /oidc {
+          set $oidc_client_id      ${OIDC_CLIENT_ID};
+          set $oidc_client_secret  ${OIDC_CLIENT_SECRET};
+          set $oidc_auth_endpoint  ${OIDC_AUTH_ENDPOINT};
+          
           js_content oidc_client.handler;
         }
 
         location @initiateOidc {
+          set $oidc_client_id      ${OIDC_CLIENT_ID};
+          set $oidc_client_secret  ${OIDC_CLIENT_SECRET};
+          set $oidc_auth_endpoint  ${OIDC_AUTH_ENDPOINT};
+
           js_content oidc_client.initiate;
         }
 
         location /oidc/token {
           internal;
-          proxy_pass https://login.microsoftonline.com/94db9e7d-6399-47cb-87ba-f83853e100d0/oauth2/v2.0/token/;
+          proxy_pass ${OIDC_TOKEN_ENDPOINT};
         }
 
         # sample site

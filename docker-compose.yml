@@ -3,10 +3,15 @@ services:
   nginx:
     image: nginx
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./out:/etc/nginx/njs-modules:ro
+      - ./nginx.conf.template:/etc/nginx/templates/nginx.conf.template:ro
+      - ./out:/etc/nginx/out:ro
     ports:
     - 8080:80
     environment:
     - NGINX_PORT=80
+    - NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx
+    - OIDC_TOKEN_ENDPOINT=${OIDC_TOKEN_ENDPOINT}
+    - OIDC_AUTH_ENDPOINT=${OIDC_AUTH_ENDPOINT}
+    - OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
+    - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
 
