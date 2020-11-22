@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/OwenPatey/nginx-njs-oidc-client#readme",
   "devDependencies": {
-    "njs-types": "^0.4.4"
-  },
-  "dependencies": {
+    "njs-types": "^0.4.4",
+    "typescript": "^4.1.2",
     "tsc-watch": "^4.2.9"
-  }
+  },
+  "dependencies": {}
 }
